@@ -48,27 +48,5 @@ namespace DPL.PMTool.Tests.AccessorTests
             Assert.IsNotNull(loaded);
             Assert.IsTrue(loaded.Id > 0);
         }
-
-        [DataTestMethod]
-        [DataRow(0.5, true, DisplayName= "Estimate must be greater than 0")]
-        [DataRow(-0.05, false, DisplayName= "Estimates less than 0 should error")]
-        public void ProjectAccess_DataChecks(decimal estimate, bool result)
-        {
-            // arrange / given
-            var activity = new Activity()
-            {
-                TaskName = "",
-                Estimate = estimate,
-                Start = DateTime.Now,
-                Finish = DateTime.Now.AddDays(1),
-                Predecessors = "",
-                Resource = "Dev1",
-                ProjectId = 0,
-            };
-
-            // act / when
-            var saved = ProjectAccess.SaveActivity(activity);
-            
-        }
     }
 }

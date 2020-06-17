@@ -25,7 +25,7 @@ namespace DPL.PMTool.Client.Web.Controllers
         [HttpPost]
         public Project SaveProject(Project project)
         {
-            
+            return _planningManager.SaveProject(project);
         }
     }
 }
