@@ -20,4 +20,20 @@ export class PlanComponent implements OnInit {
     this.project = await this.planningService.newProject();
   }
 
+  async saveProject() {
+    alert('save project. call the planning service.');
+  }
+
+  async addRow() {
+    this.project.activities.push({
+      id: 0,
+      taskName: 'NEW',
+      start: new Date(),
+      finish: new Date(),
+      estimate: 1.0,
+      predecessor: 1,
+      resource: 'Doug',
+      priority: 500
+    });
+  }
 }

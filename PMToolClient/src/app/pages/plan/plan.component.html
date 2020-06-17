@@ -30,14 +30,14 @@
             {{ data.priority }}
         </td>
         <td>
-            {{ data.start }}
+            {{ data.start.toLocaleDateString() }}
         </td>
         <td>
-            {{ data.finish }}
+            {{ data.finish.toLocaleDateString() }}
         </td>
     </tr>
 </table>
 <div>
-    <button>SAVE</button>
-    <button>ADD ROW</button>
+    <button (click)="saveProject()">SAVE</button>
+    <button (click)="addRow()">ADD ROW</button>
 </div>
