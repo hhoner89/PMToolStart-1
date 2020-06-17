@@ -1,3 +1,5 @@
+using DPL.PMTool.Accessors;
+using DPL.PMTool.Accessors.Shared.EntityFramework;
 using DPL.PMTool.Managers.Shared;
 
 namespace DPL.PMTool.Managers
@@ -10,6 +12,13 @@ namespace DPL.PMTool.Managers
             {
                 Message = "TestMe"
             };
+        }
+
+        public Project SaveProject(Project project)
+        {
+            var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
+            var saved = projectAccess.SaveProject(project);
+            return saved;
         }
     }
 }

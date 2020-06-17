@@ -1,1 +1,43 @@
-<p>plan works!</p>
+<form>
+    <label>NAME: </label>
+    <input>
+    <label>DATE: </label>
+    <input>
+</form>
+<table>
+    <tr>
+        <th *ngFor="let column of headers">
+            {{ column }}
+        </th>
+    </tr>
+    <tr *ngFor="let data of project.activities"> 
+        <td>
+            {{ data.id }}
+        </td>
+        <td>
+            {{ data.taskName }}
+        </td>
+        <td>
+            {{ data.estimate }}
+        </td>
+        <td>
+            {{ data.predecessor }}
+        </td>
+        <td>
+            {{ data.resource }}
+        </td>
+        <td>
+            {{ data.priority }}
+        </td>
+        <td>
+            {{ data.start }}
+        </td>
+        <td>
+            {{ data.finish }}
+        </td>
+    </tr>
+</table>
+<div>
+    <button>SAVE</button>
+    <button>ADD ROW</button>
+</div>
