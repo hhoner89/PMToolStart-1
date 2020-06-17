@@ -8,6 +8,6 @@ namespace DPL.PMTool.Managers
         public string Name { get; set; }
         public DateTime Start { get; set; }
 
-        private Activity[] Activities { get; set; }
+        public Activity[] Activities { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace DPL.PMTool.Managers
     {
         TestMeResponse TestMe();
 
-        
+        Project Project(int id);
         Project SaveProject(Project project);
     }
 }
