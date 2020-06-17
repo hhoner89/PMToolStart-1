@@ -15,7 +15,7 @@
             {{ data.id }}
         </td>
         <td>
-            {{ data.taskName }}
+            <input type="text" class="form-control" [(ngModel)]="data.taskName">
         </td>
         <td>
             {{ data.estimate }}
