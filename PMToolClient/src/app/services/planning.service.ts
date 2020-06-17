@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../dtos/Project';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanningService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   public async newProject(): Promise<Project> {
     const promise = new Promise<Project>((resolve, reject) => {
@@ -23,8 +24,8 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500 
-        }, 
+          priority: 500
+        },
         {
           id: 2,
           taskName: 'Catalog Access',
@@ -33,7 +34,7 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500 
+          priority: 500
         },
         {
           id: 3,
@@ -43,11 +44,16 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500 
+          priority: 500
         }]
       });
     });
-  
     return promise;
+  }
+
+  public async saveProject(project: Project): Promise<Project> {
+    // note: the data might not match with server.
+    return this.httpClient.post<Project>(
+      'YOUR_URL', project).toPromise();
   }
 }
