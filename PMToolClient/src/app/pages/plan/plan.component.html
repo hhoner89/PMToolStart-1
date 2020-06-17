@@ -1,8 +1,8 @@
 <form>
     <label>NAME: </label>
-    <input>
+    <input type="text" class="form-control" [(ngModel)]="project.name" [ngModelOptions]="{standalone: true}">
     <label>DATE: </label>
-    <input>
+    <input type="text" class="form-control" [(ngModel)]="project.startDate" [ngModelOptions]="{standalone: true}">
 </form>
 <table>
     <tr>
@@ -18,16 +18,16 @@
             <input type="text" class="form-control" [(ngModel)]="data.taskName">
         </td>
         <td>
-            {{ data.estimate }}
+            <input type="text" class="form-control" [(ngModel)]="data.estimate">
         </td>
         <td>
-            {{ data.predecessor }}
+            <input type="text" class="form-control" [(ngModel)]="data.predecessor">
         </td>
         <td>
-            {{ data.resource }}
+            <input type="text" class="form-control" [(ngModel)]="data.resource">
         </td>
         <td>
-            {{ data.priority }}
+            <input type="text" class="form-control" [(ngModel)]="data.priority">
         </td>
         <td>
             {{ data.start.toLocaleDateString() }}

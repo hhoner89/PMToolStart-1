@@ -13,6 +13,7 @@ export class PlanningService {
     const promise = new Promise<Project>((resolve, reject) => {
       resolve({
         id: 1,
+        name: 'eCommerce',
         startDate: new Date(),
         activities: [{
           id: 1,
