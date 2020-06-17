@@ -66,5 +66,29 @@ namespace DPL.PMTool.Tests.AccessorTests
             Assert.IsNotNull(loaded);
             Assert.IsTrue(loaded.Id > 0);
         }
+        
+        [TestMethod]
+        public void ProjectAccess_ActivitiesForProject_Test()
+        {
+            // arrange / given
+            var activity = new Activity()
+            {
+                TaskName = "TEST-" + Guid.NewGuid().ToString(),
+                Estimate = 0.5M,
+                Start = DateTime.Now,
+                Finish = DateTime.Now.AddDays(1),
+                Predecessors = "",
+                Resource = "Dev1",
+                ProjectId = 99,
+            };
+            var before = ProjectAccess.ActivitiesForProject(99);
+            
+            // act / when
+            var saved = ProjectAccess.SaveActivity(activity);
+            var after = ProjectAccess.ActivitiesForProject(99);
+            
+            // assert / then
+            Assert.AreEqual(before.Length + 1, after.Length);
+        }
     }
 }

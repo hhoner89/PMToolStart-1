@@ -11,5 +11,6 @@ namespace DPL.PMTool.Accessors
 
         Activity Activity(int id);
         Activity SaveActivity(Activity activity);
+        Activity[] ActivitiesForProject(int projectId);
     }
 }

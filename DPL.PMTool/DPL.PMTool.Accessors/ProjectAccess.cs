@@ -66,5 +66,13 @@ namespace DPL.PMTool.Accessors
 
             return activity;
         }
+        
+        public Activity[] ActivitiesForProject(int projectId)
+        {
+            using (var db = DatabaseContext.Create())
+            {
+                return db.Activities.Where(a => a.ProjectId == projectId).ToArray();
+            }
+        }        
     }
 }
