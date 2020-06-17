@@ -26,6 +26,24 @@ namespace DPL.PMTool.Tests.AccessorTests
         }
         
         [TestMethod]
+        public void ProjectAccess_ProjectList_Test()
+        {
+            // arrange / given
+            var start = ProjectAccess.Projects();
+            var project = new Project()
+            {
+                Name = "TEST-" + Guid.NewGuid().ToString()
+            };
+
+            // act / when
+            var saved = ProjectAccess.SaveProject(project);
+            var after = ProjectAccess.Projects();
+            
+            // assert / then
+            Assert.AreEqual(start.Length + 1, after.Length);
+        }
+        
+        [TestMethod]
         public void ProjectAccess_BasicActivity_Test()
         {
             // arrange / given

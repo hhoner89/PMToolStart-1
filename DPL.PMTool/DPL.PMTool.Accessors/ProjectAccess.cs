@@ -5,6 +5,14 @@ namespace DPL.PMTool.Accessors
 {
     class ProjectAccess : IProjectAccess
     {
+        public Project[] Projects()
+        {
+            using (var db = DatabaseContext.Create())
+            {
+                return db.Projects.ToArray();
+            } 
+        }
+        
         public Project Project(int id)
         {
             using (var db = DatabaseContext.Create())
