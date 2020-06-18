@@ -51,6 +51,8 @@ namespace DPL.PMTool.Client.Web
             
             app.UseCors("MyPolicy");
 
+            app.UseCors("MyPolicy");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -60,7 +62,7 @@ namespace DPL.PMTool.Client.Web
             app.UseAuthorization();
 
             app.UseCors(x => { x.AllowAnyOrigin(); });
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
