@@ -24,7 +24,8 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500
+          priority: 500,
+          projectId: 1
         },
         {
           id: 2,
@@ -34,7 +35,8 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500
+          priority: 500,
+          projectId: 1
         },
         {
           id: 3,
@@ -44,7 +46,8 @@ export class PlanningService {
           estimate: 1.0,
           predecessor: 1,
           resource: 'Doug',
-          priority: 500
+          priority: 500,
+          projectId: 1
         }]
       });
     });
@@ -52,8 +55,9 @@ export class PlanningService {
   }
 
   public async saveProject(project: Project): Promise<Project> {
+    alert('planning.service save Project method reached');
     // note: the data might not match with server.
     return this.httpClient.post<Project>(
-      'YOUR_URL', project).toPromise();
+      'https://localhost:44334/Planning/SaveProject', project).toPromise();
   }
 }

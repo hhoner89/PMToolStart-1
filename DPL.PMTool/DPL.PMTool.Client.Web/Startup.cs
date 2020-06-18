@@ -26,6 +26,12 @@ namespace DPL.PMTool.Client.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
@@ -43,6 +49,8 @@ namespace DPL.PMTool.Client.Web
                 app.UseHsts();
             }
 
+            app.UseCors("MyPolicy");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -52,7 +60,7 @@ namespace DPL.PMTool.Client.Web
             app.UseAuthorization();
 
             app.UseCors(x => { x.AllowAnyOrigin(); });
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

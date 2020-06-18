@@ -12,6 +12,6 @@ export class TestService {
 
   public async testMe(): Promise<TestMeResponse> {
     return this.httpClient.get<TestMeResponse>(
-      'https://localhost:5001/Planning/Test').toPromise();
+      'https://localhost:44334/Planning/Test').toPromise();
   }
 }
