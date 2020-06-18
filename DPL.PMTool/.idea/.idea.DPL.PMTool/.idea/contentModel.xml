@@ -182,6 +182,7 @@
         <e p="ServiceContractBase.cs" t="Include" />
       </e>
       <e p="DPL.PMTool.Contracts.Client" t="IncludeRecursive">
+        <e p="Activity.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DPL.PMTool.Contracts.Client.csproj" t="IncludeRecursive" />
         <e p="IPlanningManager.cs" t="Include" />
@@ -192,6 +193,7 @@
             </e>
           </e>
         </e>
+        <e p="Project.cs" t="Include" />
         <e p="TestMeResponse.cs" t="Include" />
       </e>
       <e p="DPL.PMTool.DbUp" t="IncludeRecursive">

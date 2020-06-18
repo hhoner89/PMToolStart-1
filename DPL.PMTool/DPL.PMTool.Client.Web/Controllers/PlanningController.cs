@@ -21,5 +21,17 @@ namespace DPL.PMTool.Client.Web.Controllers
         {
             return _planningManager.TestMe();
         }
+        
+        
+        public Project Project(int id)
+        {
+            return _planningManager.Project(id);
+        }
+        
+        [HttpPost]
+        public Project SaveProject([FromBody]Project project)
+        {
+            return _planningManager.SaveProject(project);
+        }
     }
 }
