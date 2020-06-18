@@ -55,8 +55,10 @@ export class PlanningService {
   }
 
   public async saveProject(project: Project): Promise<Project> {
+    //console.log(project.id);
+    //alert('save method reached');
     // note: the data might not match with server.
     return this.httpClient.post<Project>(
-      'https://localhost:5001/Planning/SaveProject', project).toPromise();
+      'https://localhost:44347/Planning/SaveProject', project).toPromise();
   }
 }

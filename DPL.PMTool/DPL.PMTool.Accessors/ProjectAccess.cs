@@ -31,7 +31,8 @@ namespace DPL.PMTool.Accessors
                 }
                 else
                 {
-                    db.Projects.Attach(project);
+                    //db.Projects.Attach(project);
+                    db.Projects.Update(project);
                 }
 
                 db.SaveChanges();
@@ -58,7 +59,8 @@ namespace DPL.PMTool.Accessors
                 }
                 else
                 {
-                    db.Activities.Attach(activity);
+                    //db.Activities.Attach(activity);
+                    db.Activities.Update(activity);
                 }
 
                 db.SaveChanges();
