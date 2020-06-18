@@ -7,4 +7,5 @@ export interface Activity {
     priority: number;
     start: Date;
     finish: Date;
+    projectId: number;
 }
