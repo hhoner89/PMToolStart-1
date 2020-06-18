@@ -1,0 +1,8 @@
+
+<h1>Projects</h1>
+<table>
+    <tr *ngFor="let project of projects"> 
+        <td (click)="openProject(project.id)">{{project.id}} {{project.name}} </td>
+    </tr>   
+</table>
+
