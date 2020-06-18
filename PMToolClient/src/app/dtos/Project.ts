@@ -4,6 +4,6 @@ import { Activity } from './Activity';
 export interface Project {
     id: number;
     name: string;
-    startDate: Date;
+    start: Date;
     activities: Activity[];
 }

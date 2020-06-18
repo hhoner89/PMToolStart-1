@@ -13,7 +13,7 @@ export class PlanComponent implements OnInit {
   project: Project = {
     id: 0,
     name: '',
-    startDate: new Date(),
+    start: new Date(),
     activities: []
   };
   headers: Array<string>;
@@ -48,10 +48,10 @@ export class PlanComponent implements OnInit {
       start: new Date(),
       finish: new Date(),
       estimate: 1.0,
-      predecessor: 1,
+      predecessors: '1',
       resource: 'Doug',
       priority: 500,
-      projectId: 1
+      projectId: 1,
     });
   }
 }

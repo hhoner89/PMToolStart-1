@@ -2,7 +2,7 @@
     <label>NAME: </label>
     <input type="text" class="form-control" [(ngModel)]="project.name" [ngModelOptions]="{standalone: true}">
     <label>DATE: </label>
-    <input type="date" class="form-control" [(ngModel)]="project.startDate" [ngModelOptions]="{standalone: true}">
+    <input type="date" class="form-control" [(ngModel)]="project.start" [ngModelOptions]="{standalone: true}">
 </form>
 <table>
     <tr>
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" [(ngModel)]="data.estimate">
         </td>
         <td>
-            <input type="text" class="form-control" [(ngModel)]="data.predecessor">
+            <input type="text" class="form-control" [(ngModel)]="data.predecessors">
         </td>
         <td>
             <input type="text" class="form-control" [(ngModel)]="data.resource">
@@ -30,10 +30,10 @@
             <input type="text" class="form-control" [(ngModel)]="data.priority">
         </td>
         <td>
-            {{ data.start.toLocaleDateString() }}
+            {{ data.start }}
         </td>
         <td>
-            {{ data.finish.toLocaleDateString() }}
+            {{ data.finish }}
         </td>
     </tr>
 </table>

@@ -1,9 +1,7 @@
 using System;
+using System.Collections.Generic;
 using DPL.PMTool.Accessors;
 using DPL.PMTool.Managers.Shared;
-using DPL.PMTool.Accessors.Shared.EntityFramework;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace DPL.PMTool.Managers
 {
@@ -13,20 +11,39 @@ namespace DPL.PMTool.Managers
         {
             return new TestMeResponse()
             {
-                Message = "Hi Chad"
+                Message = "TestMe"
             };
         }
 
         public Project Project(int id)
         {
+            #region Sample code
             // this should load from the ProjectAccess service.
+            // var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
+            // var dbProject = projectAccess.Project(id);
+            // convert db project to client version
+
+            //return new Project()
+            //{
+            //    Id =  id,
+            //    Name = "TEST",
+            //    Start = DateTime.Now,
+            //    Activities = new [] {
+            //        new Activity()
+            //        {
+            //            TaskName = "TEST",
+            //        }
+            //    }
+            //};
+            #endregion
+
             var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
-            var dbProject = projectAccess.Project(id);
-            var dbActivities = projectAccess.ActivitiesForProject(id);
+            Accessors.Shared.EntityFramework.Project dbProject = projectAccess.Project(id);
+            Accessors.Shared.EntityFramework.Activity[] dbActivities = projectAccess.ActivitiesForProject(id);
 
             Project clientProject = new Project();
             Activity[] clientActivities;
-
+            
             if (dbActivities != null)
             {
                 clientActivities = new Activity[dbActivities.Length];
@@ -56,7 +73,7 @@ namespace DPL.PMTool.Managers
             {
                 clientActivities = new Activity[0];
             }
-
+            
             if (dbProject != null)
             {
                 clientProject.Id = dbProject.Id;
@@ -68,35 +85,43 @@ namespace DPL.PMTool.Managers
             return clientProject;
         }
         
+        
         public Project SaveProject(Project project)
         {
+            #region Placeholder code
+            /*
+            var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
+            
+            // you will need to copy properties across to the database versions of project / activity
+            // var saved = projectAccess.SaveProject(dbProject);
+            // return saved;
+            
+            // you will need to return a project, with data from the database.
+            return project; // don't return this version.
+            */
+            #endregion
+
             var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
 
-            int projectId = project.Id;
-            string projectName = project.Name;
-            DateTime projectStart = project.Start;
-            Activity[] activitiesList = project.Activities;
-            List<Activity> newActivitiesList = new List<Activity>();
+            #region Updating DB Project object
+            DPL.PMTool.Accessors.Shared.EntityFramework.Project dbProject = projectAccess.Project(project.Id);
 
-
-            // UPDATING/SAVING PROJECT
-            DPL.PMTool.Accessors.Shared.EntityFramework.Project dbProject = projectAccess.Project(projectId);
-            
             if (dbProject == null)
             {
                 dbProject = new DPL.PMTool.Accessors.Shared.EntityFramework.Project();
                 dbProject.CreatedAt = DateTime.Now;
             }
-            dbProject.Id = projectId;
-            dbProject.Name = projectName;
-            dbProject.Start = projectStart;
+            dbProject.Id = project.Id;
+            dbProject.Name = project.Name;
+            dbProject.Start = project.Start;
             dbProject.UpdatedAt = DateTime.Now;
 
             DPL.PMTool.Accessors.Shared.EntityFramework.Project returnedDbProject = projectAccess.SaveProject(dbProject);
+            #endregion
 
-
-            // UPDATING/SAVING ACTIVITIES
-            
+            #region Updating DB Activity objects
+            Activity[] activitiesList = project.Activities;
+            List<Activity> newActivitiesList = new List<Activity>();
             foreach (Activity activity in activitiesList)
             {
                 DPL.PMTool.Accessors.Shared.EntityFramework.Activity dbActivity = new DPL.PMTool.Accessors.Shared.EntityFramework.Activity();
@@ -110,6 +135,7 @@ namespace DPL.PMTool.Managers
                     dbActivity = new DPL.PMTool.Accessors.Shared.EntityFramework.Activity();
                     dbActivity.CreatedAt = DateTime.Now;
                 }
+
                 dbActivity.Id = activity.Id;
                 dbActivity.TaskName = activity.TaskName;
                 dbActivity.Estimate = activity.Estimate;
@@ -135,18 +161,22 @@ namespace DPL.PMTool.Managers
 
                 newActivitiesList.Add(activity);
             }
+            #endregion
 
-            // UPDATE PROJECT OBJECT BEFORE RETURNING IT
-            project.Id = returnedDbProject.Id;
-            project.Name = returnedDbProject.Name;
-            project.Start = returnedDbProject.Start;
+            #region Update Client Project object
+            Project newClientProject = new Project();
+
+            newClientProject.Id = returnedDbProject.Id;
+            newClientProject.Name = returnedDbProject.Name;
+            newClientProject.Start = returnedDbProject.Start;
             for (int i = 0; i < newActivitiesList.Count; i++)
             {
                 activitiesList[i] = newActivitiesList[i];
             }
-            project.Activities = activitiesList;
+            newClientProject.Activities = activitiesList;
+            #endregion
 
-            return project;
+            return newClientProject;
         }
     }
 }

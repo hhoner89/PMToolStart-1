@@ -48,6 +48,8 @@ namespace DPL.PMTool.Client.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
+            app.UseCors("MyPolicy");
 
             app.UseCors("MyPolicy");
 

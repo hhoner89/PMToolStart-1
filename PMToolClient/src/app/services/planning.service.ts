@@ -15,17 +15,17 @@ export class PlanningService {
       resolve({
         id: 1,
         name: 'eCommerce',
-        startDate: new Date(),
+        start: new Date(),
         activities: [{
           id: 1,
           taskName: 'Setup DB',
           start: new Date(),
           finish: new Date(),
           estimate: 1.0,
-          predecessor: 1,
+          predecessors: "1",
           resource: 'Doug',
           priority: 500,
-          projectId: 1
+          projectId: 1          
         },
         {
           id: 2,
@@ -33,7 +33,7 @@ export class PlanningService {
           start: new Date(),
           finish: new Date(),
           estimate: 1.0,
-          predecessor: 1,
+          predecessors: "1",
           resource: 'Doug',
           priority: 500,
           projectId: 1
@@ -44,7 +44,7 @@ export class PlanningService {
           start: new Date(),
           finish: new Date(),
           estimate: 1.0,
-          predecessor: 1,
+          predecessors: "1",
           resource: 'Doug',
           priority: 500,
           projectId: 1
@@ -55,9 +55,10 @@ export class PlanningService {
   }
 
   public async saveProject(project: Project): Promise<Project> {
-    alert('planning.service save Project method reached');
+    //console.log(project.id);
+    //alert('save method reached');
     // note: the data might not match with server.
     return this.httpClient.post<Project>(
-      'https://localhost:44334/Planning/SaveProject', project).toPromise();
+      'https://localhost:44347/Planning/SaveProject', project).toPromise();
   }
 }
