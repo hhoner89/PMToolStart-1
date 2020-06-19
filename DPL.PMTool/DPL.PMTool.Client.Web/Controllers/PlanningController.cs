@@ -9,29 +9,40 @@ namespace DPL.PMTool.Client.Web.Controllers
         private AmbientContext _context;
         private ManagerFactory _managerFactory;
         private IPlanningManager _planningManager;
-        
+
         public PlanningController()
         {
             _context = new AmbientContext();
             _managerFactory = new ManagerFactory(_context);
             _planningManager = _managerFactory.CreateManager<IPlanningManager>();
         }
-         
+
         public TestMeResponse Test()
         {
             return _planningManager.TestMe();
         }
-        
-        
+
+
         public Project Project(int id)
         {
             return _planningManager.Project(id);
         }
-        
         [HttpPost]
-        public Project SaveProject([FromBody]Project project)
+        public Project SaveProject([FromBody] Project project)
         {
             return _planningManager.SaveProject(project);
         }
+
+        [HttpGet]
+        public Project GetProject([FromBody]int projectId)
+        {
+            return _planningManager.GetProject(projectId);
+        }
+        [HttpGet]
+        public ProjectListItem[] GetAllProjects()
+        {
+            return _planningManager.GetAllProjects();
+        }
+
     }
 }

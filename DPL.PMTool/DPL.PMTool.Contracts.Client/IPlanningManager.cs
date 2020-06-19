@@ -8,5 +8,8 @@ namespace DPL.PMTool.Managers
 
         Project Project(int id);
         Project SaveProject(Project project);
+        
+        Project GetProject(int id);
+        ProjectListItem[] GetAllProjects();
     }
 }
