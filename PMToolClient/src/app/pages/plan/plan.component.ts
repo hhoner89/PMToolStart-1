@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanningService } from 'src/app/services/planning.service';
 import { Project } from 'src/app/dtos/Project';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-plan',
@@ -20,16 +21,19 @@ export class PlanComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private planningService: PlanningService) {
+    private planningService: PlanningService,
+    private datePipe: DatePipe) {
     this.headers = ['Id', 'Task Name', 'Estimate', 'Predecessors', 'Resource', 'Priority', 'Start', 'Finish'];
   }
 
   async ngOnInit() {
+    var projectId = this.route.snapshot.paramMap.get('id');
     this.route.params.subscribe(async params => {
-      console.log(params.id);
+      //console.log(params.id);
       if (params.id > 0) {
         // load a project
         this.project = await this.planningService.getProject(params.id);
+        
 
       } else {
         // new project

@@ -34,9 +34,9 @@ namespace DPL.PMTool.Client.Web.Controllers
         }
 
         [HttpGet]
-        public Project GetProject([FromBody]int projectId)
+        public Project GetProject(int id)
         {
-            return _planningManager.GetProject(projectId);
+            return _planningManager.GetProject(id);
         }
         [HttpGet]
         public ProjectListItem[] GetAllProjects()
