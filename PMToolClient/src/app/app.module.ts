@@ -9,6 +9,8 @@ import { PlanComponent } from './pages/plan/plan.component';
 import { FormsModule }   from '@angular/forms';
 import { PlanListComponent } from './pages/plan-list/plan-list.component';
 
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { PlanListComponent } from './pages/plan-list/plan-list.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

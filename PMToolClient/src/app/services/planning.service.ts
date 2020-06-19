@@ -69,7 +69,8 @@ export class PlanningService {
   }
 
   public async getProject(projectId: number): Promise<Project> {
-    return this.httpClient.get<Project>(
-      'https://localhost:44347/Planning/GetProject').toPromise();
+    //alert('project id: ' + projectId.toString());
+    let params = new HttpParams().set('id',projectId.toString());
+    return this.httpClient.get<Project>(`https://localhost:44347/Planning/GetProject?id=${projectId}`).toPromise();
   }
 }

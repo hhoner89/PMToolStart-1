@@ -179,6 +179,7 @@ namespace DPL.PMTool.Managers
     
         public Project GetProject(int id)
         {
+            var projectId = id;
             return Project(id);
         }
         public ProjectListItem[] GetAllProjects()
