@@ -29,6 +29,8 @@ export class PlanComponent implements OnInit {
       console.log(params.id);
       if (params.id > 0) {
         // load a project
+        this.project = await this.planningService.getProject(params.id);
+
       } else {
         // new project
         this.project = await this.planningService.newProject();
@@ -38,7 +40,7 @@ export class PlanComponent implements OnInit {
 
   async saveProject() {
     this.project = await this.planningService.saveProject(this.project);
-    console.log(this.project);
+    //console.log(this.project);
   }
 
   async addRow() {

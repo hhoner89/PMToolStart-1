@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../dtos/Project';
+import { ProjectListItem } from '../dtos/ProjectListItem';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,15 @@ export class PlanningService {
     // note: the data might not match with server.
     return this.httpClient.post<Project>(
       'https://localhost:44347/Planning/SaveProject', project).toPromise();
+  }
+
+  public async getAllProjects(): Promise<ProjectListItem[]> {
+    return this.httpClient.get<ProjectListItem[]>(
+      'https://localhost:44347/Planning/GetAllProjects').toPromise();
+  }
+
+  public async getProject(projectId: number): Promise<Project> {
+    return this.httpClient.get<Project>(
+      'https://localhost:44347/Planning/GetProject').toPromise();
   }
 }

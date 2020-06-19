@@ -84,8 +84,6 @@ namespace DPL.PMTool.Managers
 
             return clientProject;
         }
-        
-        
         public Project SaveProject(Project project)
         {
             #region Placeholder code
@@ -177,6 +175,38 @@ namespace DPL.PMTool.Managers
             #endregion
 
             return newClientProject;
+        }
+    
+        public Project GetProject(int id)
+        {
+            return Project(id);
+        }
+        public ProjectListItem[] GetAllProjects()
+        {
+            var projectAccess = AccessorFactory.CreateAccessor<IProjectAccess>();
+            DPL.PMTool.Accessors.Shared.EntityFramework.Project[] allProjects = 
+                projectAccess.Projects();
+
+            ProjectListItem[] projectList;
+            if (allProjects == null)
+            {
+                projectList = new ProjectListItem[0];
+            }
+            else
+            {
+                projectList = new ProjectListItem[allProjects.Length];
+                if (allProjects.Length > 0)
+                {
+                    for (int i = 0; i < allProjects.Length; i++)
+                    {
+                        projectList[i] = new ProjectListItem();
+                        projectList[i].Id = allProjects[i].Id;
+                        projectList[i].Name = allProjects[i].Name;
+                    }
+                }
+            }
+
+            return projectList;
         }
     }
 }
